@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NitroDrive AutoTech | Accesorios Tuning y Tecnología Automotriz</title>
+    
+    <!-- Google Fonts para tipografía legibles y deportivas -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;800;900&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome para Iconos -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Archivo de Estilos Externo -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <!-- ==================== NAVEGACIÓN / HEADER ==================== -->
+    <header class="navbar">
+        <div class="logo">
+            <i class="fa-solid fa-gauge-high logo-icon"></i>
+            <div>
+                <h1>NITRO<span>DRIVE</span></h1>
+                <small>AUTO ACCESSORIES & TECH</small>
+            </div>
+        </div>
+
+        <nav class="nav-links">
+            <a href="#hero">Inicio</a>
+            <a href="#catalogo">Catálogo</a>
+            <a href="#promos">Ofertas</a>
+        </nav>
+
+        <div class="header-actions">
+            <!-- Botón de Carrito -->
+            <button class="cart-btn" id="open-cart-btn" aria-label="Ver carrito">
+                <i class="fa-solid fa-cart-shopping"></i>
+                <span class="cart-badge" id="cart-badge">0</span>
+            </button>
+        </div>
+    </header>
+
+    <!-- ==================== HERO SECTION (PORTADA) ==================== -->
+    <section class="hero" id="hero">
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <span class="tagline">POTENCIA & ESTILO SIN LÍMITES</span>
+            <h2>ACCESORIOS HIGH-TECH PARA TU AUTO</h2>
+            <p>Luces LED de alta potencia, Equipos de Audio, Rastreo GPS y lo último en modificación automotriz al mejor precio.</p>
+            <div class="hero-btns">
+                <a href="#catalogo" class="btn btn-green"><i class="fa-solid fa-fire"></i> Explorar Catálogo</a>
+                <a href="#promos" class="btn btn-blue"><i class="fa-solid fa-bolt"></i> Ver Promociones</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== BARRAS DE BENEFICIOS ==================== -->
+    <section class="features-bar">
+        <div class="feature-item">
+            <i class="fa-solid fa-truck-fast"></i>
+            <div>
+                <h4>Envíos a Todo el País</h4>
+                <p>Gratis en compras mayores a $1,500</p>
+            </div>
+        </div>
+        <div class="feature-item">
+            <i class="fa-solid fa-shield-halved"></i>
+            <div>
+                <h4>Garantía Extendida</h4>
+                <p>12 meses de garantía directa</p>
+            </div>
+        </div>
+        <div class="feature-item">
+            <i class="fa-solid fa-headset"></i>
+            <div>
+                <h4>Soporte Técnico 24/7</h4>
+                <p>Asesoría en instalación</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== CATÁLOGO DE PRODUCTOS ==================== -->
+    <main class="catalog-section" id="catalogo">
+        <div class="section-title">
+            <h2>NUESTRO <span>CATÁLOGO</span></h2>
+            <p>Selecciona entre más de 25 accesorios de alto rendimiento</p>
+        </div>
+
+        <!-- Filtros y Buscador -->
+        <div class="controls-container">
+            <div class="search-box">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                <input type="text" id="search-input" placeholder="Buscar bocinas, leds, gps...">
+            </div>
+            <div class="filter-buttons" id="filter-buttons">
+                <button class="filter-btn active" data-category="todos">Todos</button>
+                <button class="filter-btn" data-category="led">Luces LED</button>
+                <button class="filter-btn" data-category="audio">Audio y Estéreos</button>
+                <button class="filter-btn" data-category="gps">GPS & Seguridad</button>
+                <button class="filter-btn" data-category="tuning">Tuning & Interior</button>
+            </div>
+        </div>
+
+        <!-- Contenedor donde JS renderiza los productos -->
+        <div class="products-grid" id="products-grid">
+            <!-- Renderizado dinámico desde script.js -->
+        </div>
+    </main>
+
+    <!-- ==================== PANEL DEL CARRITO (SIDEBAR) ==================== -->
+    <div class="cart-overlay" id="cart-overlay"></div>
+    <aside class="cart-sidebar" id="cart-sidebar">
+        <div class="cart-header">
+            <h3><i class="fa-solid fa-cart-shopping"></i> Tu Carrito</h3>
+            <button class="close-btn" id="close-cart-btn">&times;</button>
+        </div>
+
+        <!-- Lista de Items en Carrito -->
+        <div class="cart-items" id="cart-items">
+            <!-- Se llena dinámicamente con JS -->
+        </div>
+
+        <!-- Footer del Carrito (Totales y Botones) -->
+        <div class="cart-footer">
+            <div class="subtotal-row">
+                <span>Subtotal:</span>
+                <strong id="cart-subtotal">$0.00 MXN</strong>
+            </div>
+            <div class="subtotal-row discount-row" id="discount-row" style="display: none;">
+                <span>Descuento (NITRO10):</span>
+                <strong id="cart-discount" class="text-green">-$0.00 MXN</strong>
+            </div>
+            <div class="total-row">
+                <span>Total a Pagar:</span>
+                <strong id="cart-total">$0.00 MXN</strong>
+            </div>
+
+            <!-- Cupón de Descuento -->
+            <div class="coupon-box">
+                <input type="text" id="coupon-input" placeholder="Código: NITRO10">
+                <button id="apply-coupon-btn" class="btn-sm btn-blue">Aplicar</button>
+            </div>
+
+            <button class="btn btn-green btn-block" id="checkout-btn">
+                <i class="fa-solid fa-credit-card"></i> Proceder al Pago
+            </button>
+        </div>
+    </aside>
+
+    <!-- ==================== MODAL DE CHECKOUT / COMPRA ==================== -->
+    <div class="modal" id="checkout-modal">
+        <div class="modal-content">
+            <button class="close-btn modal-close" id="close-checkout-btn">&times;</button>
+            <h3><i class="fa-solid fa-cash-register"></i> Finalizar Compra</h3>
+            
+            <form id="checkout-form">
+                <div class="form-group">
+                    <label>Nombre Completo</label>
+                    <input type="text" required placeholder="Ej. Juan Pérez">
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Correo Electrónico</label>
+                        <input type="email" required placeholder="cliente@correo.com">
+                    </div>
+                    <div class="form-group">
+                        <label>Teléfono</label>
+                        <input type="tel" required placeholder="55 1234 5678">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Dirección de Envío</label>
+                    <input type="text" required placeholder="Calle, Número, Colonia, Ciudad">
+                </div>
+                
+                <div class="form-group">
+                    <label>Método de Pago</label>
+                    <select required id="payment-method">
+                        <option value="card">Tarjeta de Crédito / Débito</option>
+                        <option value="paypal">PayPal</option>
+                        <option value="transfer">Transferencia / OXXO</option>
+                    </select>
+                </div>
+
+                <div class="checkout-summary">
+                    <span>Monto Total a Cobrar:</span>
+                    <h3 id="checkout-final-total">$0.00 MXN</h3>
+                </div>
+
+                <button type="submit" class="btn btn-red btn-block">
+                    <i class="fa-solid fa-lock"></i> Confirmar y Pagar Ahora
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- ==================== MODAL DE CONFIRMACIÓN DE COMPRA ==================== -->
+    <div class="modal" id="success-modal">
+        <div class="modal-content text-center">
+            <div class="success-icon">
+                <i class="fa-solid fa-circle-check"></i>
+            </div>
+            <h2>¡Compra Exitosa!</h2>
+            <p>Gracias por tu pedido en NitroDrive AutoTech.</p>
+            <p class="order-number">Orden de pedido: <strong id="order-id">#ND-0000</strong></p>
+            <p class="small-text">Te hemos enviado un correo con los detalles del envío y número de rastreo.</p>
+            <button class="btn btn-green" id="close-success-btn">Seguir Comprando</button>
+        </div>
+    </div>
+
+    <!-- Contenedor para Notificaciones Toast -->
+    <div class="toast-container" id="toast-container"></div>
+
+    <!-- ==================== FOOTER ==================== -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-brand">
+                <h2>NITRO<span>DRIVE</span></h2>
+                <p>Especialistas en tuning, audio y accesorios de alta gama para autos.</p>
+            </div>
+            <div class="footer-links">
+                <h4>Categorías</h4>
+                <a href="#catalogo">Luces LED</a>
+                <a href="#catalogo">Audio y Sonido</a>
+                <a href="#catalogo">Rastreo GPS</a>
+            </div>
+            <div class="footer-social">
+                <h4>Síguenos</h4>
+                <div class="social-icons">
+                    <a href="#"><i class="fa-brands fa-facebook"></i></a>
+                    <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="#"><i class="fa-brands fa-tiktok"></i></a>
+                    <a href="#"><i class="fa-brands fa-youtube"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 NitroDrive AutoTech. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <!-- Archivo de Funcionalidad JavaScript -->
+    <script src="script.js"></script>
+</body>
+</html>
